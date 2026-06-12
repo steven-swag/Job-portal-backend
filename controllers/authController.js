@@ -27,6 +27,9 @@ const sendOTP = async (req, res) => {
     // Expire after 5 minutes
     user.otpExpiry = Date.now() + 5 * 60 * 1000;
 
+    console.log('OTP request received');
+    console.log(req.body);
+
     await user.save();
 
     await sendEmail(
