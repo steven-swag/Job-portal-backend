@@ -24,7 +24,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:5173',
-      'https://job-portal-frontend-xwrx.vercel.app',
+      'https://job-portal-frontend-iota-five.vercel.app',
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
