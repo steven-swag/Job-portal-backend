@@ -1,29 +1,6 @@
 # Job Portal Backend
 
-REST API backend for the Job Portal application built with Node.js, Express.js, MongoDB, and JWT Authentication.
-
-## Features
-
-* User Authentication
-* JWT Authorization
-* Admin Role Management
-* Job CRUD Operations
-* Job Applications
-* Resume Upload
-* Application Status Management
-* Email Notifications
-* Dashboard Statistics
-
-## Tech Stack
-
-* Node.js
-* Express.js
-* MongoDB
-* Mongoose
-* JWT
-* Multer
-* Nodemailer
-* bcryptjs
+Backend API for the Job Portal application built with Node.js, Express.js, MongoDB, and Brevo Email API for OTP authentication.
 
 ## Installation
 
@@ -39,7 +16,7 @@ npm start
 
 ## Environment Variables
 
-Create a `.env` file:
+Create a `.env` file and add:
 
 ```env
 PORT=5000
@@ -48,55 +25,85 @@ MONGO_URI=your_mongodb_connection_string
 
 JWT_SECRET=your_jwt_secret
 
-EMAIL_USER=your_email
+BREVO_API_KEY=your_brevo_api_key
 
-EMAIL_PASS=your_app_password
+CLIENT_URL=http://localhost:5173
 ```
 
-## API Modules
+## Features
+
+* OTP Authentication using Brevo Email API
+* JWT Authorization
+* Role-Based Access Control (Admin/User)
+* Job Posting and Management
+* Job Applications
+* Resume Upload
+* Profile Management
+* Dashboard Analytics
+* MongoDB Atlas Integration
+
+## API Endpoints
 
 ### Authentication
 
-* Register User
-* Login User
+* POST `/api/auth/send-otp`
+* POST `/api/auth/verify-otp`
+* GET `/api/auth/me`
 
 ### Jobs
 
-* Create Job
-* Update Job
-* Delete Job
-* Get Jobs
-* Get Job By ID
+* GET `/api/jobs`
+* POST `/api/jobs`
+* PUT `/api/jobs/:id`
+* DELETE `/api/jobs/:id`
 
 ### Applications
 
-* Apply For Job
-* View Applications
-* View Applicants
-* Update Application Status
+* POST `/api/applications/:jobId`
+* GET `/api/applications/my-applications`
 
 ### Profile
 
-* View Profile
-* Update Profile
-* Upload Resume
+* GET `/api/profile`
+* PUT `/api/profile`
+* POST `/api/profile/upload-resume`
 
 ### Dashboard
 
-* Total Users
-* Total Jobs
-* Total Applications
-* Accepted Applications
-* Rejected Applications
+* GET `/api/dashboard/stats`
 
-## Future Enhancements
+## Live Demo
 
-* Search and Filters
-* Pagination
-* Saved Jobs
-* Interview Scheduling
-* Real-Time Notifications
-* Analytics Dashboard
+Frontend:
+https://job-portal-frontend-iota-five.vercel.app/
+
+Backend:
+https://job-portal-backend-g0mb.onrender.com/
+
+## Tech Stack
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* JWT
+* Multer
+* Brevo API
+* CORS
+
+## Authentication Flow
+
+1. User enters name and email.
+2. OTP is generated and sent using Brevo Email API.
+3. User verifies OTP.
+4. JWT token is generated.
+5. User gains access based on role permissions.
+
+## Deployment
+
+* Frontend: Vercel
+* Backend: Render
+* Database: MongoDB Atlas
 
 ## Author
 
