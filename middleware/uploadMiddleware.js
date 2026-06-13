@@ -1,15 +1,16 @@
 const multer = require('multer');
-const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('../config/cloudinary');
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'job-portal-resumes',
+    resource_type: 'raw',
+    allowed_formats: ['pdf', 'doc', 'docx'],
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 module.exports = upload;

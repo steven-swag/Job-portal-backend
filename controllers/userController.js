@@ -60,17 +60,7 @@ const uploadResume = async (req, res) => {
       });
     }
 
-    const fs = require('fs');
-    const path = require('path');
-    if (updatedUser.resume) {
-      const fullPath = path.join(__dirname, '..', updatedUser.resume);
-
-      if (fs.existsSync(fullPath)) {
-        fs.unlinkSync(fullPath);
-      }
-    }
-
-    updatedUser.resume = req.file.path.replace(/\\/g, '/');
+    updatedUser.resume = req.file.path;
 
     await updatedUser.save();
 

@@ -27,16 +27,12 @@ const sendOTP = async (req, res) => {
     // Expire after 5 minutes
     user.otpExpiry = Date.now() + 5 * 60 * 1000;
 
-    console.log('OTP request received');
-    console.log(req.body);
-
     await user.save();
-    console.log('Before sendEmail');
 
-        await sendEmail(
-          email,
-          'Job Tracker - OTP Verification',
-          `Hello,
+    await sendEmail(
+      email,
+      'Job Tracker - OTP Verification',
+      `Hello,
 
     Your OTP for Job Tracker is ${otp}.
 
@@ -46,9 +42,8 @@ const sendOTP = async (req, res) => {
 
     Regards,
     Job Tracker Team`,
-        );
+    );
 
-    console.log('After sendEmail');
     res.status(200).json({
       success: true,
       message: 'OTP sent successfully',
