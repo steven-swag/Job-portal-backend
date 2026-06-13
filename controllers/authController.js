@@ -141,7 +141,7 @@ const testCookie = (req, res) => {
 const testEmail = async (req, res) => {
   try {
     await sendEmail(
-      'yourgmail@gmail.com',
+      'stevensharon875@gmail.com',
       'Test Email',
       'Brevo is working successfully',
     );
