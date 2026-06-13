@@ -31,6 +31,7 @@ const sendOTP = async (req, res) => {
     console.log(req.body);
 
     await user.save();
+    console.log('Before sendEmail');
 
     await sendEmail(
       email,
@@ -47,6 +48,7 @@ Regards,
 Job Tracker Team`,
     );
 
+    console.log('After sendEmail');
     res.status(200).json({
       success: true,
       message: 'OTP sent successfully',
