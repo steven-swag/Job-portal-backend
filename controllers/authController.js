@@ -143,4 +143,5 @@ module.exports = {
   verifyOTP,
   getMe,
   testCookie,
+  test
 };
