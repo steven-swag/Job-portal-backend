@@ -11,12 +11,14 @@ const sendEmail = async (email, subject, text) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    connectionTimeout: 10000,
+    socketTimeout: 10000,
   });
 
   console.log('Transporter created');
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: 'stevensharon875@gmail.com',
     to: email,
     subject,
     text,

@@ -33,20 +33,20 @@ const sendOTP = async (req, res) => {
     await user.save();
     console.log('Before sendEmail');
 
-    await sendEmail(
-      email,
-      'Job Tracker - OTP Verification',
-      `Hello,
+//     await sendEmail(
+//       email,
+//       'Job Tracker - OTP Verification',
+//       `Hello,
 
-Your OTP for Job Tracker is ${otp}.
+// Your OTP for Job Tracker is ${otp}.
 
-This OTP is valid for 5 minutes.
+// This OTP is valid for 5 minutes.
 
-If you did not request this OTP, please ignore this email.
+// If you did not request this OTP, please ignore this email.
 
-Regards,
-Job Tracker Team`,
-    );
+// Regards,
+// Job Tracker Team`,
+//     );
 
     console.log('After sendEmail');
     res.status(200).json({
