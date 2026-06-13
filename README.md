@@ -1,6 +1,6 @@
 # Job Portal Backend
 
-Backend API for the Job Portal application built with Node.js, Express.js, MongoDB, and Brevo Email API for OTP authentication.
+Backend API for the Job Portal application built with Node.js, Express.js, MongoDB, Cloudinary, and Brevo Email API for OTP authentication.
 
 ## Installation
 
@@ -28,6 +28,12 @@ JWT_SECRET=your_jwt_secret
 BREVO_API_KEY=your_brevo_api_key
 
 CLIENT_URL=http://localhost:5173
+
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
 
 ## Features
@@ -37,10 +43,11 @@ CLIENT_URL=http://localhost:5173
 * Role-Based Access Control (Admin/User)
 * Job Posting and Management
 * Job Applications
-* Resume Upload
+* Resume Upload using Cloudinary
 * Profile Management
 * Dashboard Analytics
 * MongoDB Atlas Integration
+* Secure File Storage with Cloudinary
 
 ## API Endpoints
 
@@ -72,13 +79,18 @@ CLIENT_URL=http://localhost:5173
 
 * GET `/api/dashboard/stats`
 
+## Resume Upload Flow
+
+1. User uploads a resume (PDF/DOC/DOCX).
+2. File is stored securely in Cloudinary.
+3. Resume URL is saved in MongoDB.
+4. Recruiters can view applicant resumes directly from the Applicants Dashboard.
+
 ## Live Demo
 
-Frontend:
-https://job-portal-frontend-iota-five.vercel.app/
+**Frontend:** https://job-portal-frontend-iota-five.vercel.app/
 
-Backend:
-https://job-portal-backend-g0mb.onrender.com/
+**Backend:** https://job-portal-backend-g0mb.onrender.com/
 
 ## Tech Stack
 
@@ -88,6 +100,7 @@ https://job-portal-backend-g0mb.onrender.com/
 * Mongoose
 * JWT
 * Multer
+* Cloudinary
 * Brevo API
 * CORS
 
@@ -104,6 +117,7 @@ https://job-portal-backend-g0mb.onrender.com/
 * Frontend: Vercel
 * Backend: Render
 * Database: MongoDB Atlas
+* File Storage: Cloudinary
 
 ## Author
 
