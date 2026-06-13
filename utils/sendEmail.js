@@ -1,40 +1,25 @@
-const nodemailer = require('nodemailer');
+const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 const sendEmail = async (email, subject, text) => {
-  console.log('Creating transporter');
+  const defaultClient = SibApiV3Sdk.ApiClient.instance;
 
-  const transporter = nodemailer.createTransport({
-    host: 'smtp-relay.brevo.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+  const apiKey =
+    defaultClient.authentications['api-key'];
+
+  apiKey.apiKey = process.env.BREVO_API_KEY;
+
+  const apiInstance =
+    new SibApiV3Sdk.TransactionalEmailsApi();
+
+  await apiInstance.sendTransacEmail({
+    sender: {
+      email: 'stevensharon875@gmail.com',
+      name: 'Job Tracker',
     },
-    connectionTimeout: 10000,
-    socketTimeout: 10000,
-  });
-
-  console.log('Transporter created');
-
-  const mailOptions = {
-    from: 'stevensharon875@gmail.com',
-    to: email,
+    to: [{ email }],
     subject,
-    text,
-  };
-
-  try {
-    console.log('Before sendMail');
-
-    const info = await transporter.sendMail(mailOptions);
-
-    console.log('After sendMail');
-    console.log('Mail sent:', info.messageId);
-  } catch (error) {
-    console.error('EMAIL ERROR:', error);
-    throw error;
-  }
+    textContent: text,
+  });
 };
 
 module.exports = sendEmail;
