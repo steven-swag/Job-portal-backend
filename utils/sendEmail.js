@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer');
 
 const sendEmail = async (email, subject, text) => {
+  console.log('Creating transporter');
+
   const transporter = nodemailer.createTransport({
     host: 'smtp-relay.brevo.com',
     port: 587,
@@ -11,6 +13,8 @@ const sendEmail = async (email, subject, text) => {
     },
   });
 
+  console.log('Transporter created');
+
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
@@ -18,9 +22,17 @@ const sendEmail = async (email, subject, text) => {
     text,
   };
 
-  const info = await transporter.sendMail(mailOptions);
+  try {
+    console.log('Before sendMail');
 
-  console.log('Mail sent:', info.messageId);
+    const info = await transporter.sendMail(mailOptions);
+
+    console.log('After sendMail');
+    console.log('Mail sent:', info.messageId);
+  } catch (error) {
+    console.error('EMAIL ERROR:', error);
+    throw error;
+  }
 };
 
 module.exports = sendEmail;
