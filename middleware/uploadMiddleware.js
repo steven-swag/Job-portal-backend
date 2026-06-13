@@ -8,6 +8,8 @@ const storage = new CloudinaryStorage({
     folder: 'job-portal-resumes',
     resource_type: 'auto',
     allowed_formats: ['pdf', 'doc', 'docx'],
+    type: 'upload',
+    access_mode: 'public',
   },
 });
 
