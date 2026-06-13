@@ -14,6 +14,7 @@ const path = require('path');
 dotenv.config();
 connectDB();
 const app = express();
+app.set('trust proxy', 1);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
